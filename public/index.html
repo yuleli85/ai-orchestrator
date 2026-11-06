@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>总控台 · 一句话分派给多个智能体</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">控</div>
+      <div>
+        <h1>总控台</h1>
+        <p>一句话拆解 · 分派给多个智能体并行执行</p>
+      </div>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-view="main">总控</button>
+      <button class="tab" data-view="dev">开发</button>
+      <button class="tab" data-view="arch">架构</button>
+    </div>
+    <div class="topbar-right">
+      <div class="pill" id="modelPill"><span class="dot"></span><span id="modelText">连接中</span></div>
+      <button class="btn ghost" id="btnRoles">角色库</button>
+    </div>
+  </header>
+
+  <div class="body" id="viewMain">
+    <aside class="sidebar">
+      <button class="btn primary block" id="btnNew">+ 新任务</button>
+      <div class="side-label">历史任务</div>
+      <div class="job-list" id="jobList"></div>
+    </aside>
+
+    <main class="main">
+      <div class="main-inner">
+        <section class="composer">
+          <label class="composer-label" for="goalInput">你现在要解决什么</label>
+          <textarea id="goalInput" placeholder="说人话就行，不用想怎么分工——总控会自己判断该拆成几块、交给哪些角色。&#10;&#10;例：给我们的支付系统写一份对账模块的技术方案，要能直接给开发用"></textarea>
+          <div class="composer-foot">
+            <span class="hint" id="hintText">Ctrl / Cmd + Enter 直接拆解</span>
+            <button class="btn primary" id="btnPlan">拆解任务</button>
+          </div>
+        </section>
+
+        <section class="stage" id="stage">
+          <div class="empty">
+            <div class="et">还没有任务</div>
+            <div class="es">上面写一句你想做的事，总控会拆成几块并行推进</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="body" id="viewDev" hidden>
+    <aside class="sidebar dev-side">
+      <div class="ws-card" id="wsCard">
+        <div class="ws-label">当前工作区</div>
+        <div class="ws-path" id="wsPath">未选择</div>
+        <button class="btn sm block" id="btnWs">更换目录</button>
+      </div>
+      <div class="side-label">开发记录</div>
+      <div class="job-list" id="devList"></div>
+    </aside>
+
+    <main class="main">
+      <div class="main-inner">
+        <section class="composer">
+          <label class="composer-label" for="devTask">让开发智能体做什么</label>
+          <textarea id="devTask" placeholder="它会先读你的代码出一份实施方案，你确认后才会真的动文件。&#10;&#10;例：给 src/utils 加一个日期格式化函数，支持 YYYY-MM-DD 和相对时间，并补单元测试"></textarea>
+          <div class="composer-foot">
+            <span class="hint">先出方案 · 确认后动手 · 全程可回滚</span>
+            <button class="btn primary" id="btnDevPlan">出实施方案</button>
+          </div>
+        </section>
+
+        <section class="stage" id="devStage">
+          <div class="empty">
+            <div class="et">还没有开发任务</div>
+            <div class="es">选一个项目目录，说清楚要改什么，它会先读代码再动手</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="body" id="viewArch" hidden>
+    <aside class="sidebar dev-side">
+      <div class="ws-card" id="archWsCard">
+        <div class="ws-label">要分析的代码目录</div>
+        <div class="ws-path" id="archWsPath">未选择</div>
+        <button class="btn sm block" id="btnArchWs">更换目录</button>
+      </div>
+      <div class="side-label">设计记录</div>
+      <div class="job-list" id="archList"></div>
+    </aside>
+
+    <main class="main">
+      <div class="main-inner">
+        <section class="composer">
+          <label class="composer-label" for="archGoal">要解决的架构问题</label>
+          <textarea id="archGoal" placeholder="它会先扫一遍代码，给你问题清单和 2~3 个候选方案，你选定方向后它才写完整架构文档。&#10;&#10;例：订单模块越来越难改，一个改动要动五六个包，帮我重新划一遍模块边界"></textarea>
+          <div class="composer-foot">
+            <span class="hint">先扫描诊断 · 你选方向 · 再出架构文档</span>
+            <button class="btn primary" id="btnArchScan">扫描诊断</button>
+          </div>
+        </section>
+
+        <section class="stage" id="archStage">
+          <div class="empty">
+            <div class="et">还没有架构任务</div>
+            <div class="es">选一个代码目录，说清楚要解决的问题，它会先告诉你现状和几个可选方向</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+<script src="/dev.js"></script>
+<script src="/arch.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# 运行时数据：任务记录、回滚备份，每跑一次都变，不进版本库
+data/
+
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+coverage/
+
+# 本地环境变量（含密钥，绝对不能进库）
+.env
+.env.local
+
+# 日志与临时文件
+*.log
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

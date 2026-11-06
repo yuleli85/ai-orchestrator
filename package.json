@@ -1,0 +1,15 @@
+{
+  "name": "ai-orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "总控台 - 一句话拆解任务并分派给多个 AI 智能体并行执行",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
